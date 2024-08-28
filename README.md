@@ -3,18 +3,25 @@
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Features](#features)
-3. [Technologies Used](#technologies-used)
-4. [Getting Started](#getting-started)
+2. [Application Screenshot](#application-screenshot)
+3. [Features](#features)
+4. [Technologies Used](#technologies-used)
+5. [Getting Started](#getting-started)
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
    - [Usage](#usage)
-5. [Code Structure](#code-structure)
-6. [Contact Information](#contact-information)
+6. [Code Structure](#code-structure)
+7. [Contact Information](#contact-information)
 
 ## Overview
 
 Welcome to the repository for Task 1 of my CodSoft Python Programming Internship. This project focuses on developing a command-line To-Do List application using Python. The application allows users to manage and organize tasks efficiently by providing functionalities to add, update, delete, and view tasks. The task management system categorizes tasks into three main statuses: Backlog, Ongoing, and Done, and supports prioritization with levels Low, Med, and High.
+
+## Application Screenshot
+
+Here is a screenshot of the application:
+
+![Screenshot of Application](images/screenshot.png)
 
 ## Features
 
