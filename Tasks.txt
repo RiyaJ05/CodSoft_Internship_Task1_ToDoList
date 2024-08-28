@@ -1,0 +1,9 @@
+Plan project roadmap,Backlog,High
+Review design documents,Backlog,Med
+Create project timeline,Backlog,Low
+Develop user interface,Ongoing,High
+Test application features,Ongoing,Med
+Write unit tests,Ongoing,Low
+Deploy application,Done,High
+Document project process,Done,Med
+Submit final report,Done,Low
