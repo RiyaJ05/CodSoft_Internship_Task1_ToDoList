@@ -1,6 +1,15 @@
 import os
 
 class Task:
+  """
+  A class representing a task in the to-do list.
+
+  Attributes:
+      desc (str): Description of the task.
+      status (str): Status of the task, e.g., "Backlog", "Ongoing", "Done".
+      priority (str): Priority of the task, e.g., "Low", "Med", "High".
+  """
+
   tasks_dict = {
     "Backlog": [],
     "Ongoing": [],
@@ -10,11 +19,24 @@ class Task:
   PRIORITY_LEVELS = ("Low", "Med", "High")
 
   def __init__(self, desc, status, priority):
+    """
+    Initialize a Task instance.
+
+    Args:
+        desc (str): Description of the task.
+        status (str): Status of the task.
+        priority (str): Priority of the task.
+    """
+        
     self.desc = desc
     self.status = status
     self.priority = priority
 
   def add_task(self):
+    """
+    Add the current task to the appropriate category in tasks_dict.
+    """
+
     if self.status.lower() == "backlog":
       Task.tasks_dict["Backlog"].append(self)
     
@@ -26,6 +48,10 @@ class Task:
 
   @staticmethod
   def display_all_tasks():
+    """
+    Display all tasks grouped by their status in a formatted manner.
+    """
+
     for category in Task.tasks_dict:
       task_num = 1
       
@@ -57,9 +83,22 @@ class Task:
         print("=" * 61)
 
   def remove_task(self):
+    """
+    Remove the current task from its category in tasks_dict.
+    """
+
     Task.tasks_dict[self.status].remove(self)
 
   def update_task(self, new_desc, new_status, new_priority):
+    """
+    Update the task with new description, status, and priority.
+
+    Args:
+        new_desc (str): New description for the task.
+        new_status (str): New status for the task.
+        new_priority (str): New priority for the task.
+    """
+
     new_task = Task(new_desc, new_status, new_priority)
     self.remove_task()
 
@@ -72,21 +111,52 @@ class Task:
       
   @staticmethod
   def status_validator(task_status):
+    """
+    Validate and correct the task status input.
+
+    Args:
+        task_status (str): Status to validate.
+
+    Returns:
+        str: Validated status.
+    """
+
     while task_status.capitalize() not in Task.STATUS_LEVELS:
       task_status = input(f"Invalid Status! Please select a suitable task status ({Task.STATUS_LEVELS}): ")
     return task_status.capitalize()
 
   @staticmethod
   def priority_validator(task_priority):
+    """
+    Validate and correct the task priority input.
+
+    Args:
+        task_priority (str): Priority to validate.
+
+    Returns:
+        str: Validated priority.
+    """
+
     while task_priority.capitalize() not in Task.PRIORITY_LEVELS:
       task_priority = input(f"Invalid Priority! Please select a suitable task priority ({Task.PRIORITY_LEVELS}): ")
     return task_priority.capitalize()
 
   def __str__(self):
+    """
+    Return a string representation of the task.
+
+    Returns:
+        str: Formatted string of the task.
+    """
+
     return f"Task: {self.desc:<20s} Priority: {self.priority:<5s}"
 
 
 def menu():
+  """
+  Display the main menu of the To-Do List application.
+  """
+
   print("\n" + "=" * 21)
   print("To-Do List")
   print("=" * 21)
@@ -98,6 +168,13 @@ def menu():
 
 
 def load_list_from_file(file_path):
+  """
+  Load tasks from a file and populate the tasks_dict.
+
+  Args:
+      file_path (str): Path to the file containing tasks.
+  """
+
   try:
     with open(file_path) as file:
       line = file.readline()
@@ -126,6 +203,13 @@ def load_list_from_file(file_path):
 
 
 def write_list_to_file(file_path):
+  """
+  Write all tasks from tasks_dict to a file.
+
+  Args:
+      file_path (str): Path to the file to write tasks.
+  """
+
   try:
     with open(file_path, "w") as file:
       for category in Task.tasks_dict:
@@ -137,19 +221,30 @@ def write_list_to_file(file_path):
 
 
 def main():
+  """
+  Main function to run the To-Do List application.
+  """
+
+  # Define file path for tasks data
   file_name = "Tasks.txt"
   file_path = os.path.join(os.getcwd(), file_name)
+
+  # Load existing tasks from file
   load_list_from_file(file_path)
 
   run = True
   while run:
+    # Display main menu
     menu()
+
+    # Get user input for menu option
     menu_op = input("Select a menu option: ")
 
+    # View all tasks
     if menu_op == "1":
       Task.display_all_tasks()
 
-
+    # Add a new task
     elif menu_op == "2":
       task_desc = input("\nEnter a task description: ")
       task_status = input(f"Select a task status ({Task.STATUS_LEVELS}): ")
@@ -163,6 +258,7 @@ def main():
       print("\nTask added successfully!")
 
 
+    # Delete an existing task
     elif menu_op == "3":
       Task.display_all_tasks()
 
@@ -178,6 +274,7 @@ def main():
         print(f"ERROR: {e}")
         
 
+    # Update an existing task
     elif menu_op == "4":
       print("\n" + "*" * 30)
       print("What would you like to update?")
@@ -185,6 +282,7 @@ def main():
       print("1. Task Description \n2. Task Status \n3. Task Priority")
       upd_op = input("\nEnter your update selection: ")
 
+      # Update task description
       if upd_op == "1":
         Task.display_all_tasks()
         
@@ -201,6 +299,7 @@ def main():
         except Exception as e:
           print(f"Error: {e}")
 
+      # Update task status
       elif upd_op == "2":
         Task.display_all_tasks()
 
@@ -218,6 +317,7 @@ def main():
         except Exception as e:
           print(f"ERROR: {e}")
 
+      # Update task priority
       elif upd_op == "3":
         Task.display_all_tasks()
 
@@ -239,11 +339,13 @@ def main():
         upd_op = input("\nInvalid option! Please enter a suitable update selection: ")
 
 
+    # Exit the program and save tasks to file
     elif menu_op == "5":
       run = False
       print("\nTHANK YOU FOR USING THIS TO-DO LIST APPLICATION! Exiting... \n")
 
 
+    # Handle invalid menu option
     else:
       print("\nInvalid option! Please try again...")
     
