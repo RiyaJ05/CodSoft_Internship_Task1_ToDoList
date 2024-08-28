@@ -149,7 +149,7 @@ class Task:
         str: Formatted string of the task.
     """
 
-    return f"Task: {self.desc:<20s} Priority: {self.priority:<5s}"
+    return f"Task: {self.desc:<25s} Priority: {self.priority:<5s}"
 
 
 def menu():
