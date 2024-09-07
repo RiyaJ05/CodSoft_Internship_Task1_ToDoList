@@ -47,7 +47,7 @@ Ensure you have Python 3.x installed on your system. You can download it from [p
 
 1. Clone this repository to your local machine:
    ```bash
-   git clone [https://github.com/RiyaJ05/task_1_ToDoList.git](https://github.com/RiyaJ05/CodSoft_Internship_Task_1_ToDoList)
+   git clone https://github.com/RiyaJ05/CodSoft_Internship_Task_1_ToDoList
 
 2. Navigate to the project directory:
    ```bash
